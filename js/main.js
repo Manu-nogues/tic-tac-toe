@@ -96,10 +96,9 @@
 //   })
 // }
 
+
+
 let turnos = 6
-
-
-
 
 let interruptor = true;
 let casillas = Array.from(document.getElementsByClassName("cell"))
@@ -111,12 +110,13 @@ casillas.map((casilla, /*index*/) => {
                 interruptor = !interruptor;
                 turnos = turnos - 1
                 console.log(turnos)
-
-            }
+                
+                
+            }                          
         } else {
             (casilla.innerHTML = "")
+            
         }
-
 
     });
 });
