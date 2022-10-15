@@ -98,28 +98,42 @@
 
 
 
-let turnos = 6
 
+let turnos = 6
+    
 let interruptor = true;
 let casillas = Array.from(document.getElementsByClassName("cell"))
 casillas.map((casilla, /*index*/) => {
     casilla.addEventListener("click", () => {
+        let pepito;
         if (turnos > 0) {
             if (casilla.innerHTML == "") {
                 casilla.innerHTML = (interruptor) ? "X" : "O"
+                pepito = casilla.innerHTML
+                console.log(interruptor)
                 interruptor = !interruptor;
                 turnos = turnos - 1
-                console.log(turnos)
-                
-                
-            }                          
+
+
+            }
         } else {
-            (casilla.innerHTML = "")
-            
+            if(casilla.innerHTML == "X") {
+                interruptor = true;
+                (casilla.innerHTML = "")
+                turnos = turnos + 1
+            } else if(casilla.innerHTML == "O") {
+                interruptor = false;
+                (casilla.innerHTML = "")
+                turnos = turnos + 1
+            }
         }
+    
+        console.log(pepito)
 
     });
 });
+
+
 
 function reset() {
     document.querySelectorAll(".cell").forEach((casilla) => {
