@@ -205,3 +205,11 @@ footer img {
     font-size: medium;
   }
 }
+
+.box{
+
+height: 90vh;
+display: grid;
+place-content: center;
+color: rgb(3, 3, 20);
+}
