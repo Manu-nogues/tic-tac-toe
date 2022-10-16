@@ -1,25 +1,6 @@
 
 ///ARRAY notificador de quien ha ganado///
 
-const STATUS_DISPLAY = document.querySelector('.game-notification'),
-    GAME_STATE = ["", "", "", "", "", "", "", "", ""],
-    WINNINGS = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-    ],
-    WIN_MESSAGE = () => `El jugador ${casilla} ha ganado!`,
-    DRAW_MESSAGE = () => `El juego ha terminado en empate!`,
-    CURRENT_PLAYER_TURN = () => `Turno del jugador ${casilla}`
-
-
-
-
 ///Funcion para escribir y sobre escribir el tablero///
 
 let turnos = 6
@@ -32,11 +13,11 @@ casillas.map((casilla, /*index*/) => {
             if (casilla.innerHTML == "") {
                 casilla.innerHTML = (interruptor) ? "X" : "O"
                 pepito = casilla.innerHTML
-                console.log(interruptor)
+                
                 interruptor = !interruptor;
                 turnos = turnos - 1
 
-
+                console.log(checkWinner())
             }
 
             ///funcion para poder mover las las fichas de sitio///
@@ -50,13 +31,30 @@ casillas.map((casilla, /*index*/) => {
                 interruptor = false;
                 (casilla.innerHTML = "")
                 turnos = turnos + 1
+                console.log(checkWinner())
             }
         }
 
-        console.log(pepito)
+     
 
     });
 });
+
+const checkWinner = () => {
+    
+return  (casillas[0].innerHTML != "" && casillas[0].innerHTML == casillas[1].innerHTML && casillas[0].innerHTML == casillas[2].innerHTML) ||
+        (casillas[0].innerHTML != "" && casillas[0].innerHTML == casillas[3].innerHTML && casillas[0].innerHTML == casillas[6].innerHTML) ||
+        (casillas[0].innerHTML != "" && casillas[0].innerHTML == casillas[4].innerHTML && casillas[0].innerHTML == casillas[8].innerHTML) ||
+        (casillas[1].innerHTML != "" && casillas[1].innerHTML == casillas[4].innerHTML && casillas[1].innerHTML == casillas[7].innerHTML) ||
+        (casillas[2].innerHTML != "" && casillas[2].innerHTML == casillas[5].innerHTML && casillas[2].innerHTML == casillas[8].innerHTML) ||
+        (casillas[3].innerHTML != "" && casillas[3].innerHTML == casillas[4].innerHTML && casillas[3].innerHTML == casillas[5].innerHTML) ||
+        (casillas[6].innerHTML != "" && casillas[6].innerHTML == casillas[7].innerHTML && casillas[6].innerHTML == casillas[8].innerHTML) ||
+        (casillas[2].innerHTML != "" && casillas[2].innerHTML == casillas[4].innerHTML && casillas[2].innerHTML == casillas[6].innerHTML);
+
+        
+}
+
+
 
 
 
@@ -66,5 +64,14 @@ function reset() {
     });
 }
 
-
+const showWinner = () => {
+    let nameWinner;
+    if (p1Turn) {
+        nameWinner=player2.nombre;
+    } else {
+        nameWinner=player1.nombre;
+    }
+    sessionStorage.setItem('winner', nameWinner);
+    window.location="ganador.html";
+}
 

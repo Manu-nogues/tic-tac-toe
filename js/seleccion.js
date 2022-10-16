@@ -8,6 +8,7 @@ function guardarInput (){
     sessionStorage.setItem('pepito1',pepito1);
     sessionStorage.setItem('pepito2',pepito2);
     sessionStorage.setItem('pepito3',pepito3);
+    window.location.href="index.html";
 }
 
 //como obtener el valor del session storage
